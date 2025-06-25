@@ -20,6 +20,8 @@ import webbrowser
 
 # Kill port 5000 if occupied
 def free_port_5000():
+    if os.environ.get('RENDER') == 'true':
+        return  # skip port cleanup on Render
     try:
         current_pid = os.getpid()
         result = subprocess.run(['lsof', '-ti:5000'], stdout=subprocess.PIPE, text=True)
@@ -31,6 +33,7 @@ def free_port_5000():
         print(f"⚠ Failed to free port 5000: {e}")
 
 free_port_5000()
+
 
 app = Flask(__name__)
 app.secret_key = 'replace-this-with-a-random-secret-key'
@@ -231,4 +234,5 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, cleanup_on_exit)
     signal.signal(signal.SIGTERM, cleanup_on_exit)
     threading.Thread(target=open_browser).start()
-    app.run(debug=True, use_reloader=False)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
+
