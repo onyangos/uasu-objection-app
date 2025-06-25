@@ -36,7 +36,12 @@ app = Flask(__name__)
 app.secret_key = 'replace-this-with-a-random-secret-key'
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send']
-CLIENT_SECRETS_FILE = 'credentials.json'
+import json
+
+CLIENT_SECRETS_FILE = 'temp_credentials.json'
+with open(CLIENT_SECRETS_FILE, 'w') as f:
+    f.write(os.environ['GOOGLE_CREDENTIALS_JSON'])
+
 
 # --- Fixed Content ---
 FIXED_CONTENT = {
