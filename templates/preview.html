@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head><title>Preview Your Objection Letter</title></head>
+<body>
+  <h2>Preview Your Objection Letter</h2>
+  <pre>
+To,
+The Registrar of Trade Unions
+State Department for Labour and Skill Development
+Bishops Road, Social Security House
+P.O. Box 40326 – 00100
+Nairobi
+
+{{ fixed['DATE'] }}
+
+Dear Madam,
+
+REF: Objection to the Proposed Amendments to the UASU 2024 Constitution – Gazette Notice No. 8134
+
+I am writing to formally object to the proposed amendments to the Constitution of the Universities Academic Staff Union (UASU), as published in Gazette Notice No. 8134 dated 5th February 2025 and released to the public on 20th June 2025. I am a member of UASU, currently affiliated with {{ data['university'] }}, and my personal details are provided below:
+
+Full Name: {{ data['name'] }}
+PF/Staff Number: {{ data['pf_number'] }}
+ID Number: {{ data['id_number'] }}
+Email: {{ data['email'] }}
+
+My grounds for objection are as follows:
+
+I. PROCEDURAL VIOLATIONS
+{{ fixed['PROCEDURAL_VIOLATIONS'] }}
+
+II. SUBSTANTIVE ILLEGALITIES
+{{ fixed['SUBSTANTIVE_ILLEGALITIES'] }}
+
+III. ADDITIONAL GROUNDS FOR OBJECTION
+{{ fixed['ADDITIONAL_GROUNDS'] }}
+
+{{ data['additional_reasons'] }}
+
+IV. REQUESTED ACTIONS
+{{ fixed['REQUESTED_ACTIONS'] }}
+
+This objection is filed under Section 27(4) of the Labour Relations Act (LRA) and Article 41 of the Constitution of Kenya (COK). Kindly acknowledge receipt and take the necessary action to uphold the rule of law and union democracy.
+
+Yours sincerely,
+
+{{ data['name'] }}
+Date: {{ data['preview_date'] }}
+
+  </pre>
+
+  <form action="/submit" method="POST">
+    <input type="submit" value="Confirm and Send">
+  </form>
+</body>
+</html>
