@@ -223,16 +223,16 @@ def cleanup_on_exit(signal_received, frame):
         print(f"⚠ Error cleaning up: {e}")
     sys.exit(0)
 
-import threading
-import time
-
-def open_browser():
-    time.sleep(1.5)
-    webbrowser.open("http://127.0.0.1:5000")
-
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, cleanup_on_exit)
     signal.signal(signal.SIGTERM, cleanup_on_exit)
-    threading.Thread(target=open_browser).start()
+    if os.environ.get("RENDER") != "true":
+        import threading
+        import time
+        def open_browser():
+            time.sleep(1.5)
+            webbrowser.open("http://127.0.0.1:5000")
+        threading.Thread(target=open_browser).start()
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
+
 
